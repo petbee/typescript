@@ -8,10 +8,7 @@ module.exports = !hasTypescript
       overrides: [
         {
           files: ['*.ts', '*.tsx'],
-          extends: [
-            'plugin:@typescript-eslint/eslint-recommended',
-            'plugin:@typescript-eslint/recommended',
-          ],
+          extends: ['plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended'],
           plugins: ['@typescript-eslint'],
           parser: '@typescript-eslint/parser',
           parserOptions: {
@@ -33,6 +30,9 @@ module.exports = !hasTypescript
           rules: {
             //! extensions of native eslint rules
             //! when modifying a rule here, make sure to modify the native one and vice-versa
+
+            // Don't require a weird naming convention for interfaces
+            '@typescript-eslint/interface-name-prefix': 'off',
 
             // Disallow declaration of variables already declared in the outer scope
             // https://eslint.org/docs/rules/no-shadow
@@ -157,6 +157,10 @@ module.exports = !hasTypescript
               },
             ],
 
+            // Don't allow "any" at all
+            // https://typescript-eslint.io/rules/no-explicit-any
+            '@typescript-eslint/no-explicit-any': 'error',
+
             // Enforce explicit function return type
             // https://typescript-eslint.io/rules/explicit-function-return-type/
             '@typescript-eslint/explicit-function-return-type': 'off',
@@ -184,7 +188,7 @@ module.exports = !hasTypescript
             '@typescript-eslint/restrict-plus-operands': [
               'error',
               {
-                checkCompoundAssignments: true,
+                skipCompoundAssignments: true,
               },
             ],
 

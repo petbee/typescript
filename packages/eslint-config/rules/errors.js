@@ -23,7 +23,7 @@ module.exports = {
 
     // Disallow assignments that can lead to race conditions due to usage of await or yield
     // https://eslint.org/docs/rules/require-atomic-updates
-    'require-atomic-updates': 'on',
+    'require-atomic-updates': 'warn',
 
     //! Require eslint >= 6.7.0
 
