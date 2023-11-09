@@ -1,0 +1,18 @@
+{
+  "name": "@petbee/tsconfig",
+  "version": "0.6.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/petbee/typescript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/petbee/typescript.git",
+    "directory": "packages/tsconfig"
+  },
+  "main": "tsconfig.json",
+  "license": "MIT",
+  "peerDependencies": {
+    "typescript": "^3 || ^4"
+  }
+}
