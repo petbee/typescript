@@ -1,0 +1,40 @@
+{
+  "name": "@petbee/prettier-config",
+  "version": "1.0.0",
+  "description": "Petbee's shared prettier config",
+  "keywords": [
+    "prettier",
+    "petbee"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/petbee/typescript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/petbee/typescript.git",
+    "directory": "packages/prettier-config"
+  },
+  "license": "MIT",
+  "main": "prettier.config.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "scripts": {
+    "format": "prettier --ignore-path='.gitignore' --list-different --write .",
+    "format:check": "prettier --ignore-path='.gitignore' --check ."
+  },
+  "prettier": "./prettier.config.js",
+  "dependencies": {
+    "prettier-plugin-organize-imports": "3.2.3"
+  },
+  "devDependencies": {
+    "prettier": "3.0.3",
+    "typescript": "5.2.2"
+  },
+  "peerDependencies": {
+    "prettier": ">=2.4",
+    "typescript": ">=2.9"
+  }
+}
