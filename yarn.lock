@@ -1948,11 +1948,6 @@ eslint-plugin-react@7.33.2:
     semver "^6.3.1"
     string.prototype.matchall "^4.0.8"
 
-eslint-plugin-vtex@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-vtex/-/eslint-plugin-vtex-2.2.1.tgz#b205207edf8f56cdf9d613d20760d89c9d409491"
-  integrity sha512-wndnmcKn9O7OsLfZdj42s+rxUZ9s3a1J0AAGpmn5gAf3dpO0XocVkZiLYzy5M/AGiLBBCnsIYTQK98TPT3aXrQ==
-
 eslint-scope@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-5.1.1.tgz#e786e59a66cb92b3f6c1fb0d508aab174848f48c"

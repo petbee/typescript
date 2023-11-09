@@ -22,7 +22,6 @@ module.exports = {
 
     // Enforce position of line comments
     // https://eslint.org/docs/rules/line-comment-position
-    // TODO https://github.com/vtex/front-end-coding-standard/issues/30
     'line-comment-position': [
       'off',
       {
@@ -33,7 +32,6 @@ module.exports = {
 
     // Disallow comments inline after code
     // https://eslint.org/docs/rules/no-inline-comments
-    // TODO https://github.com/vtex/front-end-coding-standard/issues/30
     'no-inline-comments': 'off',
 
     // Require or disallow newlines around directives
@@ -91,19 +89,17 @@ module.exports = {
       'error',
       {
         selector: 'LabeledStatement',
-        message:
-          'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
+        message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
       },
       {
         selector: 'WithStatement',
-        message:
-          '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
+        message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
       // ban all enums
       {
         selector: 'TSEnumDeclaration:not([const=true])',
         message:
-          "Literal types and enums, in many cases, solve the same problem while enum has some trade-offs that usually literal types don't. Consider using a literal type instead. See https://github.com/vtex/typescript/issues/60 for more information.",
+          "Literal types and enums, in many cases, solve the same problem while enum has some trade-offs that usually literal types don't. Consider using a literal type instead.",
       },
     ],
 
@@ -183,7 +179,6 @@ module.exports = {
         next: '*',
       },
       // import/order already handle padding lines between cjs-imports
-      // see https://github.com/vtex/typescript/issues/82
       {
         blankLine: 'any',
         prev: ['cjs-import'],
