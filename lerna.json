@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "version": "independent",
+  "npmClient": "yarn",
+  "stream": true,
+  "packages": ["packages/*"],
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "{.*,*}{.config,rc,ignore}{,.js}",
+        "LICENSE",
+        "lerna.json"
+      ],
+      "message": "chore(release): :robot: publish"
+    }
+  }
+}

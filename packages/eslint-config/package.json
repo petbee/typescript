@@ -1,0 +1,54 @@
+{
+  "name": "@petbee/eslint-config",
+  "version": "1.0.0",
+  "description": "Petbee's eslint config",
+  "keywords": [
+    "eslint",
+    "config",
+    "petbee"
+  ],
+  "homepage": "https://github.com/petbee/typescript",
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/petbee/typescript.git",
+    "directory": "packages/eslint-config"
+  },
+  "scripts": {
+    "format": "prettier --ignore-path='.gitignore' --list-different --write .",
+    "format:check": "prettier --ignore-path='.gitignore' --check .",
+    "lint": "eslint --ignore-path='.gitignore' '{src,tests}/**/*.{ts,tsx}'"
+  },
+  "eslintConfig": {
+    "extends": "./eslint-config.js"
+  },
+  "prettier": "@petbee/prettier-config",
+  "bugs": {
+    "url": "https://github.com/petbee/typescript/issues"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "6.10.0",
+    "@typescript-eslint/parser": "6.10.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-react": "7.33.2"
+  },
+  "peerDependencies": {
+    "eslint": "^8.0.0",
+    "typescript": "^4.0.0 || ^5.0.0"
+  },
+  "devDependencies": {
+    "@petbee/prettier-config": "2.0.2",
+    "@types/react": "18.2.37",
+    "eslint": "8.53.0",
+    "prettier": "3.0.3",
+    "react": "18.2.0",
+    "typescript": "5.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
