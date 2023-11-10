@@ -21,7 +21,7 @@ Main repository for Petbee Typescript standards. Issues should be used to start 
 > If you're not using Bash, change `/bin/bash` to your shell's executable path.
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/petbee/typescript/master/scripts/bootstrap-typescript.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/petbee/typescript/main/scripts/bootstrap-typescript.sh)"
 ```
 
 > **Warning**: This will **override** the following configuration files: `.prettierrc`, `.eslintrc` and `tsconfig.json`.
