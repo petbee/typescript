@@ -21,12 +21,14 @@
     "directory": "packages/eslint-config"
   },
   "scripts": {
+    "eslint-check": "eslint-config-prettier index.js",
+    "dump-config": "eslint-config-prettier index.js > config-dump.json",
     "format": "prettier --ignore-path='.gitignore' --list-different --write .",
     "format:check": "prettier --ignore-path='.gitignore' --check .",
     "lint": "eslint --ignore-path='.gitignore' '{src,tests}/**/*.{ts,tsx}'"
   },
   "eslintConfig": {
-    "extends": "./eslint-config.js"
+    "extends": "petbee"
   },
   "prettier": "@petbee/prettier-config",
   "bugs": {
