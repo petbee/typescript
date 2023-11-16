@@ -30,6 +30,9 @@
     ]
   },
   "devDependencies": {
+    "@petbee/eslint-config": "./packages/eslint-config",
+    "@petbee/prettier-config": "./packages/prettier-config",
+    "@petbee/tsconfig": "./packages/tsconfig",
     "eslint": "^8.53.0",
     "husky": "^8.0.3",
     "lerna": "^7.4.2",

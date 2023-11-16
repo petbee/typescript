@@ -1,4 +1,4 @@
 {
-  "extends": "petbee",
+  "extends": "@petbee/eslint-config",
   "root": true
 }
