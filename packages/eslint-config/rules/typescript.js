@@ -2,9 +2,8 @@ const { hasPackage } = require('../lib/utils')
 
 const hasTypescript = hasPackage('typescript')
 
-module.exports = !hasTypescript
-  ? {}
-  : {
+module.exports = hasTypescript
+  ? {
       overrides: [
         {
           files: ['*.ts', '*.tsx'],
@@ -284,3 +283,4 @@ module.exports = !hasTypescript
         },
       ],
     }
+  : {}

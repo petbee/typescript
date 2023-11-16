@@ -1,9 +1,6 @@
 // Jest:
 // https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules
 // Cypress: https://github.com/cypress-io/eslint-plugin-cypress/blob/master/docs/rules
-const { hasPackage } = require('../lib/utils')
-
-const hasJest = hasPackage('jest')
 
 module.exports = {
   overrides: [
@@ -24,16 +21,6 @@ module.exports = {
       // Unless it's inside a cypress directory
       excludedFiles: ['**/cypress/**'],
       extends: ['plugin:jest/recommended', 'plugin:jest/style'],
-      settings: {
-        // need to explicitly set this for the IO apps.
-        // we need to explicitly define jest version because IO apps
-        // have jest installed in a subdirectory.
-        jest: {
-          ...(hasJest === false && {
-            version: 26,
-          }),
-        },
-      },
       rules: {
         // Enforce consistent a test method name
         // https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/consistent-test-it.md

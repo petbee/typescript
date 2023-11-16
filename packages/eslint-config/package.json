@@ -28,7 +28,9 @@
     "lint": "eslint --ignore-path='.gitignore' '{src,tests}/**/*.{ts,tsx}'"
   },
   "eslintConfig": {
-    "extends": "petbee"
+    "extends": [
+      "petbee"
+    ]
   },
   "prettier": "@petbee/prettier-config",
   "bugs": {
