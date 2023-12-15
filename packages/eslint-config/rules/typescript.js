@@ -184,12 +184,7 @@ module.exports = hasTypescript
 
             // Enforce that when adding two variables, operands must both be of type number or of type string
             // https://typescript-eslint.io/rules/restrict-plus-operands/
-            '@typescript-eslint/restrict-plus-operands': [
-              'error',
-              {
-                skipCompoundAssignments: true,
-              },
-            ],
+            '@typescript-eslint/restrict-plus-operands': ['error'],
 
             // Enforce optional chaining over chaining AND (&&) operators
             // https://typescript-eslint.io/rules/prefer-optional-chain/
