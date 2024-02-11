@@ -1,37 +1,84 @@
-# `@petbee/prettier-config`
+# `@petbee/eslint-config`
 
-This package provides Petbees's `.prettierrc` shared config.
+This package provides Petbee's `.eslintrc` as an extensible shared config.
 
 ## Installation
 
-Give that you already have `prettier` installed, run:
+Give that you already have ESLint installed, run:
 
 ```bash
-yarn add -D @petbee/prettier-config
+yarn add -D @petbee/eslint-config typescript prettier
 ```
 
 ## Usage
 
-After installing the module, add it to your `.prettierrc` configuration file:
+After installing the module, just add it to your `extends` array inside your `.eslintrc`.
 
 ```jsonc
-"@petbee/prettier-config"
-```
-
-Or add it to your `package.json`:
-
-```json
+// .eslintrc
 {
-  ...
-  "prettier": "@petbee/prettier-config"
-  ...
+  "extends": ["@petbee/eslint-config"]
 }
 ```
 
-Differently from `eslint`, `prettier` shared presets are not extensible, so if you want to override some property, which is not encouraged, you'll need to use the `.prettierrc.js` file.
+As any other eslint preset, it's possible to override some rules and configurations. We encourage trying to keep the closest possible to the preset rules, but every project is different and sometimes overriding is needed, use it carefully.
 
-For more information about configuring `prettier`, please check the [Prettier configuration documentation](https://prettier.io/docs/en/configuration.html).
+### For typescript
+
+The preset will automatically load Typescript rules when dealing with `.ts` or `.tsx` files. However, there are some rules that require type-checking. This means that a `tsconfig.json`, which includes all files supposed to be linted, must be present. If your existing configuration does not include all of the files you would like to lint, you can create a separate `tsconfig.eslint.json`, at the root of your project, as follows:
+
+```jsonc
+// tsconfig.eslint.json
+{
+  "extends": "./tsconfig.json",
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
+  "exclude": []
+}
+```
+
+And you should be good to go.
+
+### For Javascript
+
+Sometimes you want to use modern, not yet officially supported, syntax in your Javascript files, such as dynamic `import()`. This can be achieved by using the [`babel-eslint` parser](https://github.com/babel/babel-eslint). For size reasons, we don't include it in this preset but it's extremely simple to configure it:
+
+```bash
+yarn add -D babel-eslint
+```
+
+```jsonc
+// .eslintrc
+{
+  "extends": "@petbee/eslint-config",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  }
+}
+```
+
+If a project uses both Typescript and Javascript, you can configure the parser inside an `override` block:
+
+```jsonc
+// .eslintrc
+{
+  "extends": "@petbee/eslint-config",
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "parser": "babel-eslint",
+      "parserOptions": {
+        "sourceType": "module"
+      }
+    }
+  ]
+}
+```
+
+Please check the [`babel-eslint` documentation](https://github.com/babel/babel-eslint#additional-parser-configuration) for further options.
 
 ## References
 
-- [`prettier` options documentation](https://prettier.io/docs/en/options.html)
+- [`@typescript-eslint` documentation](https://typescript-eslint.io/docs/)
+- [`eslint-plugin-import` documentation](https://github.com/benmosher/eslint-plugin-import)
+- [`eslint-plugin-prettier` documentation](https://github.com/prettier/eslint-plugin-prettier)
