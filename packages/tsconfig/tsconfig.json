@@ -4,8 +4,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": ["es2017", "dom", "es2018.promise", "esnext.asynciterable"],
-    "module": "es6",
+    "lib": ["es2017", "dom", "es2018.promise", "esnext.asynciterable", "es2020", "esnext"],
+    "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -17,10 +17,10 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "es2017",
+    "target": "esnext",
     "forceConsistentCasingInFileNames": true
   },
   "typeAcquisition": {
-    "enable": false
+    "enable": true
   }
 }
