@@ -1,6 +1,6 @@
 {
   "name": "@petbee/prettier-config",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Petbee's shared prettier config",
   "keywords": [
     "prettier",
