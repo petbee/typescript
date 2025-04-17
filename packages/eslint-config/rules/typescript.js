@@ -218,7 +218,7 @@ module.exports = hasTypescript
 
             // Disallow throwing literals as exceptions
             // https://typescript-eslint.io/rules/no-throw-literal/
-            '@typescript-eslint/no-throw-literal': 'warn',
+            'no-throw-literal': 'warn',
 
             // Disallows invocation of require() in favor of import statements
             // https://typescript-eslint.io/rules/no-require-imports/
