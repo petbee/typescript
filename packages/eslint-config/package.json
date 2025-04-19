@@ -12,7 +12,7 @@
   "exports": {
     ".": {
       "require": "./index.js",
-      "import": "./eslint.config.js"
+      "import": "./eslint.config.mjs"
     }
   },
   "main": "index.js",
