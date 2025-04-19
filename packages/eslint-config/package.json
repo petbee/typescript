@@ -1,6 +1,6 @@
 {
   "name": "@petbee/eslint-config",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Petbee's eslint config",
   "keywords": [
     "eslint",
