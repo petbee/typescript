@@ -16,8 +16,10 @@
     }
   },
   "main": "index.js",
+  "types": "./eslint.config.d.ts",
   "files": [
     "index.js",
+    "eslint.config.d.ts",
     "eslint.config.mjs",
     "rules/",
     "lib/"
