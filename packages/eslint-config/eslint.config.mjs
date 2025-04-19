@@ -18,6 +18,7 @@ const ensureArray = (config) => {
   if (Array.isArray(config)) return config
   // If it's an object with rules, convert to a config object
   if (config.rules || config.extends || config.plugins) return [config]
+
   return []
 }
 
