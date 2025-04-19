@@ -1,6 +1,6 @@
 # `@petbee/eslint-config`
 
-This package provides Petbee's `.eslintrc` as an extensible shared config.
+This package provides Petbee's ESLint configuration as an extensible shared config, supporting both ESLint v9.x (flat config) and older versions (.eslintrc).
 
 ## Installation
 
@@ -12,7 +12,42 @@ yarn add -D @petbee/eslint-config typescript prettier
 
 ## Usage
 
-After installing the module, just add it to your `extends` array inside your `.eslintrc`.
+### For ESLint v8.x and older (legacy config)
+
+```jsonc
+// .eslintrc
+{
+  "extends": ["@petbee/eslint-config"]
+}
+```
+
+### For ESLint v9.x (flat config)
+
+```javascript
+// eslint.config.js
+import petbeeConfig from '@petbee/eslint-config'
+
+export default [
+  ...petbeeConfig,
+  // Your custom configurations...
+]
+```
+
+### For projects using both ESLint versions
+
+If you need to support both ESLint versions in the same project, you can:
+
+```javascript
+// eslint.config.js
+import petbeeConfig from '@petbee/eslint-config'
+
+export default [
+  ...petbeeConfig,
+  // Your custom configurations...
+]
+```
+
+And maintain a .eslintrc file:
 
 ```jsonc
 // .eslintrc

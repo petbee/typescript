@@ -1,4 +1,10 @@
 declare module '@petbee/eslint-config' {
-  const config: unknown[] // or FlatConfig.Config[]
-  export default config
+  import type { FlatConfig } from 'eslint'
+
+  // For ESLint v9.x (flat config)
+  const flatConfig: FlatConfig.Config[]
+  export default flatConfig
+
+  // For older ESLint versions (.eslintrc)
+  export const legacyConfig: Record<string, unknown>
 }

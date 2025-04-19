@@ -12,6 +12,15 @@ import importsConfig from './rules/imports.js'
 import typescriptConfig from './rules/typescript.js'
 import testsConfig from './rules/tests.js'
 
+// Helper function to ensure configs are in the correct format for spreading
+const ensureArray = (config) => {
+  if (!config) return []
+  if (Array.isArray(config)) return config
+  // If it's an object with rules, convert to a config object
+  if (config.rules || config.extends || config.plugins) return [config]
+  return []
+}
+
 export default [
   js.configs.recommended,
   {
@@ -36,13 +45,13 @@ export default [
       __DEV__: true,
     },
   },
-  ...prettierConfig,
-  ...errorsConfig,
-  ...nodeConfig,
-  ...styleConfig,
-  ...variablesConfig,
-  ...bestPracticesConfig,
-  ...importsConfig,
-  ...typescriptConfig,
-  ...testsConfig,
+  ...ensureArray(prettierConfig),
+  ...ensureArray(errorsConfig),
+  ...ensureArray(nodeConfig),
+  ...ensureArray(styleConfig),
+  ...ensureArray(variablesConfig),
+  ...ensureArray(bestPracticesConfig),
+  ...ensureArray(importsConfig),
+  ...ensureArray(typescriptConfig),
+  ...ensureArray(testsConfig),
 ]
