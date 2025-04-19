@@ -15,5 +15,53 @@
       "import": "./eslint.config.mjs"
     },
     "./legacy": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/petbee/typescript.git",
+    "directory": "packages/eslint-config"
+  },
+  "scripts": {
+    "eslint-check": "eslint-config-prettier index.js",
+    "dump-config": "eslint-config-prettier index.js > config-dump.json",
+    "format": "prettier --ignore-path='.gitignore' --list-different --write .",
+    "format:check": "prettier --ignore-path='.gitignore' --check .",
+    "lint": "eslint --ignore-path='.gitignore' '{src,tests}/**/*.{ts,tsx}'"
+  },
+  "eslintConfig": {
+    "extends": [
+      "petbee"
+    ]
+  },
+  "prettier": "@petbee/prettier-config",
+  "bugs": {
+    "url": "https://github.com/petbee/typescript/issues"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
+    "confusing-browser-globals": "^1.0.11",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-cypress": "^2.15.1",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jest": "^27.6.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react": "7.33.2"
+  },
+  "peerDependencies": {
+    "eslint": ">=5.0.0",
+    "prettier": ">=2.4",
+    "typescript": "^4.0.0 || ^5.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.37",
+    "eslint": "8.53.0",
+    "prettier": "3.0.3",
+    "react": "18.2.0",
+    "typescript": "5.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
