@@ -1,6 +1,7 @@
 import js from '@eslint/js'
 import parser from '@typescript-eslint/parser'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
+import globals from 'globals'
 
 import prettierConfig from './rules/prettier.js'
 import errorsConfig from './rules/errors.js'
@@ -16,8 +17,27 @@ import testsConfig from './rules/tests.js'
 const ensureArray = (config) => {
   if (!config) return []
   if (Array.isArray(config)) return config
-  // If it's an object with rules, convert to a config object
-  if (config.rules || config.extends || config.plugins) return [config]
+  
+  // Convert legacy config format to flat config format
+  if (config.rules || config.extends || config.plugins) {
+    const flatConfig = { ...config }
+    
+    // Convert env to languageOptions.globals
+    if (flatConfig.env) {
+      flatConfig.languageOptions = flatConfig.languageOptions || {}
+      flatConfig.languageOptions.globals = flatConfig.languageOptions.globals || {}
+      
+      // Map common environments to globals
+      if (flatConfig.env.node) Object.assign(flatConfig.languageOptions.globals, globals.node)
+      if (flatConfig.env.jest) Object.assign(flatConfig.languageOptions.globals, globals.jest)
+      if (flatConfig.env.es6) Object.assign(flatConfig.languageOptions.globals, globals.es2015)
+      
+      // Remove the env property
+      delete flatConfig.env
+    }
+    
+    return [flatConfig]
+  }
 
   return []
 }
@@ -32,19 +52,17 @@ export default [
         project: './tsconfig.json',
         sourceType: 'module',
       },
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+        ...globals.es2015,
+        __DEV__: true,
+      }
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
     },
     settings: {},
-    env: {
-      node: true,
-      jest: true,
-      es6: true,
-    },
-    globals: {
-      __DEV__: true,
-    },
   },
   ...ensureArray(prettierConfig),
   ...ensureArray(errorsConfig),
