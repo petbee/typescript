@@ -18,6 +18,7 @@
   "main": "index.js",
   "files": [
     "index.js",
+    "eslint.config.mjs",
     "rules/",
     "lib/"
   ],
