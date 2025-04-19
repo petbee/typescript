@@ -9,6 +9,12 @@
   ],
   "homepage": "https://github.com/petbee/typescript",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./eslint.config.js"
+    }
+  },
   "main": "index.js",
   "files": [
     "index.js",
