@@ -11,6 +11,7 @@
   },
   "scripts": {
     "release": "lerna version patch && lerna publish from-git --yes",
+    "release:major": "lerna version major && lerna publish from-git --yes",
     "build": "lerna run build",
     "clean": "lerna clean && lerna run clean",
     "format:check": "prettier --list-different \"./**/*.{ts,js,json}\"",
