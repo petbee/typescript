@@ -23,7 +23,7 @@ yarn add -D @petbee/eslint-config typescript prettier
 
 ### For ESLint v9.x (flat config)
 
-```javascript
+```js
 // eslint.config.js
 import petbeeConfig from '@petbee/eslint-config'
 

@@ -46,3 +46,11 @@ module.exports = {
     'import/no-self-import': 'error',
   },
 }
+
+// Flat config for ESLint v9 (no extends, plugins as object)
+module.exports.flat = {
+  plugins: {
+    import: require('eslint-plugin-import'),
+  },
+  rules: module.exports.rules,
+}

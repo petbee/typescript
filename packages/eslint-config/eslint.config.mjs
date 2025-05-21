@@ -13,36 +13,17 @@ import importsConfig from './rules/imports.js'
 import typescriptConfig from './rules/typescript.js'
 import testsConfig from './rules/tests.js'
 
-// Helper function to ensure configs are in the correct format for spreading
-const ensureArray = (config) => {
-  if (!config) return []
-  if (Array.isArray(config)) return config
-  
-  // Convert legacy config format to flat config format
-  if (config.rules || config.extends || config.plugins) {
-    const flatConfig = { ...config }
-    
-    // Convert env to languageOptions.globals
-    if (flatConfig.env) {
-      flatConfig.languageOptions = flatConfig.languageOptions || {}
-      flatConfig.languageOptions.globals = flatConfig.languageOptions.globals || {}
-      
-      // Map common environments to globals
-      if (flatConfig.env.node) Object.assign(flatConfig.languageOptions.globals, globals.node)
-      if (flatConfig.env.jest) Object.assign(flatConfig.languageOptions.globals, globals.jest)
-      if (flatConfig.env.es6) Object.assign(flatConfig.languageOptions.globals, globals.es2015)
-      
-      // Remove the env property
-      delete flatConfig.env
-    }
-    
-    return [flatConfig]
-  }
+const ignoreConfig = {
+  ignores: ['node_modules/', 'coverage/', 'dist/'],
+}
 
-  return []
+// Helper to get the flat config if available, otherwise fallback
+const getFlat = (config) => {
+  return config && config.flat ? (Array.isArray(config.flat) ? config.flat : [config.flat]) : []
 }
 
 export default [
+  ignoreConfig,
   js.configs.recommended,
   {
     files: ['**/*.ts', '**/*.tsx'],
@@ -57,20 +38,20 @@ export default [
         ...globals.jest,
         ...globals.es2015,
         __DEV__: true,
-      }
+      },
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
     },
     settings: {},
   },
-  ...ensureArray(prettierConfig),
-  ...ensureArray(errorsConfig),
-  ...ensureArray(nodeConfig),
-  ...ensureArray(styleConfig),
-  ...ensureArray(variablesConfig),
-  ...ensureArray(bestPracticesConfig),
-  ...ensureArray(importsConfig),
-  ...ensureArray(typescriptConfig),
-  ...ensureArray(testsConfig),
+  ...getFlat(prettierConfig),
+  ...getFlat(errorsConfig),
+  ...getFlat(nodeConfig),
+  ...getFlat(styleConfig),
+  ...getFlat(variablesConfig),
+  ...getFlat(bestPracticesConfig),
+  ...getFlat(importsConfig),
+  ...getFlat(typescriptConfig),
+  ...getFlat(testsConfig),
 ]

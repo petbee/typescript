@@ -6,3 +6,11 @@ module.exports = {
     'prettier/prettier': 'error',
   },
 }
+
+// Flat config for ESLint v9 (no extends, plugins as object)
+module.exports.flat = {
+  plugins: {
+    prettier: require('eslint-plugin-prettier'),
+  },
+  rules: module.exports.rules,
+}

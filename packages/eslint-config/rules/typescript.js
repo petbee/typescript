@@ -279,3 +279,25 @@ module.exports = hasTypescript
       ],
     }
   : {}
+
+// Flat config for ESLint v9 (no extends, plugins as object)
+if (hasTypescript) {
+  const overrides = module.exports.overrides || []
+  module.exports.flat = [
+    {
+      files: overrides[0]?.files,
+      languageOptions: {
+        parser: require.resolve('@typescript-eslint/parser'),
+        parserOptions: overrides[0]?.parserOptions,
+      },
+      plugins: {
+        '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+      },
+      rules: overrides[0]?.rules,
+    },
+    {
+      files: overrides[1]?.files,
+      rules: overrides[1]?.rules,
+    },
+  ]
+}

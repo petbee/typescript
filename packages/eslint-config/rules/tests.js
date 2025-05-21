@@ -63,3 +63,22 @@ module.exports = {
     },
   ],
 }
+
+// Flat config for ESLint v9 (no extends, plugins as object)
+module.exports.flat = [
+  {
+    files: module.exports.overrides[0].files,
+    plugins: {
+      cypress: require('eslint-plugin-cypress'),
+    },
+    rules: module.exports.overrides[0].rules,
+  },
+  {
+    files: module.exports.overrides[1].files,
+    excludedFiles: module.exports.overrides[1].excludedFiles,
+    plugins: {
+      jest: require('eslint-plugin-jest'),
+    },
+    rules: module.exports.overrides[1].rules,
+  },
+]
