@@ -4,7 +4,7 @@ const hasTypescript = hasPackage('typescript')
 
 const tsConfig = [
   {
-    files: ['*.ts', '*.tsx'],
+    files: ['*.ts', '*.tsx', '**/*.ts', '**/*.tsx'],
     extends: ['plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended'],
     plugins: ['@typescript-eslint'],
     parser: '@typescript-eslint/parser',
