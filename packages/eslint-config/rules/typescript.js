@@ -287,10 +287,10 @@ if (hasTypescript) {
   module.exports.flat = [
     {
       files: overrides[0]?.files,
-      // languageOptions: {
-      //   parser: overrides[0]?.parserOptions?.parser,
-      //   parserOptions: overrides[0]?.parserOptions,
-      // },
+      languageOptions: {
+        parser: overrides[0]?.parserOptions?.parser,
+        parserOptions: overrides[0]?.parserOptions,
+      },
       plugins: {
         '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
       },
