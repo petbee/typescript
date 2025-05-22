@@ -1,6 +1,6 @@
 {
   "name": "@petbee/eslint-config",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Petbee's eslint config",
   "keywords": [
     "eslint",
@@ -38,9 +38,9 @@
     "url": "https://github.com/petbee/typescript/issues"
   },
   "dependencies": {
-    "confusing-browser-globals": "^1.0.11",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
+    "confusing-browser-globals": "^1.0.11",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-cypress": "^4.3.0",
     "eslint-plugin-import": "^2.31.0",
