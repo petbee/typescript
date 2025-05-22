@@ -288,7 +288,7 @@ if (hasTypescript) {
     {
       files: overrides[0]?.files,
       languageOptions: {
-        parser: overrides[0]?.parserOptions?.parser,
+        parser: require('@typescript-eslint/parser'),
         parserOptions: overrides[0]?.parserOptions,
       },
       plugins: {
