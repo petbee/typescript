@@ -12,10 +12,12 @@
   "exports": {
     ".": {
       "require": "./index.js",
-      "import": "./eslint.config.mjs"
+      "import": "./index.mjs",
+      "types": "./index.d.ts"
     },
     "./legacy": "./index.js"
   },
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/petbee/typescript.git",

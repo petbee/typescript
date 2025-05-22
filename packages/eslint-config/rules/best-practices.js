@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 module.exports = {
   rules: {
     // Enforces return statements in callbacks of array's methods
