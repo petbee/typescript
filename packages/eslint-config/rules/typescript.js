@@ -50,7 +50,8 @@ module.exports = hasTypescript
               'warn',
               {
                 ignoreRestSiblings: true,
-                argsIgnorePattern: '_+',
+                argsIgnorePattern: '^_+',
+                varsIgnorePattern: '^_',
               },
             ],
 
