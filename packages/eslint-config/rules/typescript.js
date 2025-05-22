@@ -11,7 +11,7 @@ module.exports = hasTypescript
           plugins: ['@typescript-eslint'],
           parser: '@typescript-eslint/parser',
           parserOptions: {
-            ecmaVersion: 2019,
+            ecmaVersion: 2022,
             sourceType: 'module',
             project: [
               // look in the root
@@ -287,10 +287,10 @@ if (hasTypescript) {
   module.exports.flat = [
     {
       files: overrides[0]?.files,
-      languageOptions: {
-        parser: require.resolve('@typescript-eslint/parser'),
-        parserOptions: overrides[0]?.parserOptions,
-      },
+      // languageOptions: {
+      //   parser: overrides[0]?.parserOptions?.parser,
+      //   parserOptions: overrides[0]?.parserOptions,
+      // },
       plugins: {
         '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
       },

@@ -8,6 +8,7 @@ export default [
       'packages/eslint-config/lib/*.js',
       'packages/eslint-config/index.js',
       'packages/prettier-config/prettier.config.js',
+      '**/*/*.d.ts',
     ],
   },
 ]

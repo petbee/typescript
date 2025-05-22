@@ -1,7 +1,4 @@
 import js from '@eslint/js'
-import parser from '@typescript-eslint/parser'
-import tsPlugin from '@typescript-eslint/eslint-plugin'
-import globals from 'globals'
 
 import prettierConfig from './rules/prettier.js'
 import errorsConfig from './rules/errors.js'
@@ -25,26 +22,6 @@ const getFlat = (config) => {
 export default [
   ignoreConfig,
   js.configs.recommended,
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    languageOptions: {
-      parser,
-      parserOptions: {
-        project: './tsconfig.json',
-        sourceType: 'module',
-      },
-      globals: {
-        ...globals.node,
-        ...globals.jest,
-        ...globals.es2015,
-        __DEV__: true,
-      },
-    },
-    plugins: {
-      '@typescript-eslint': tsPlugin,
-    },
-    settings: {},
-  },
   ...getFlat(prettierConfig),
   ...getFlat(errorsConfig),
   ...getFlat(nodeConfig),
