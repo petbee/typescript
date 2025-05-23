@@ -73,6 +73,22 @@ The preset will automatically load Typescript rules when dealing with `.ts` or `
 
 And you should be good to go.
 
+### For NestJS
+
+The preset will automatically load NestJS rules when your projects has `@nestjs/core` installed. However, if you are using NestJS with Typescript, you need to make sure that the `tsconfig.json` file is present at the root of your project. If you are using a custom `tsconfig.json`, you can create a separate `tsconfig.eslint.json` file as follows:
+
+```jsonc
+
+// tsconfig.eslint.json
+{
+  "extends": "./tsconfig.json",
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
+  "exclude": []
+}
+```
+
+This will ensure that the ESLint parser can find all the files that need to be linted.
+
 ### For Javascript
 
 Sometimes you want to use modern, not yet officially supported, syntax in your Javascript files, such as dynamic `import()`. This can be achieved by using the [`babel-eslint` parser](https://github.com/babel/babel-eslint). For size reasons, we don't include it in this preset but it's extremely simple to configure it:
@@ -114,6 +130,7 @@ Please check the [`babel-eslint` documentation](https://github.com/babel/babel-e
 
 ## References
 
+- [`@darraghor/eslint-plugin-nestjs-typed` documentation](https://github.com/darraghoriordan/eslint-plugin-nestjs-typed)
 - [`@typescript-eslint` documentation](https://typescript-eslint.io/docs/)
 - [`eslint-plugin-import` documentation](https://github.com/benmosher/eslint-plugin-import)
 - [`eslint-plugin-prettier` documentation](https://github.com/prettier/eslint-plugin-prettier)
