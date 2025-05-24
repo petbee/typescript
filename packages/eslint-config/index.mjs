@@ -1,5 +1,4 @@
 import jsLint from '@eslint/js'
-import tsLint from 'typescript-eslint'
 
 // Utils
 import { hasPackage, getFlat } from './lib/utils.js'
@@ -17,24 +16,15 @@ import testsConfig from './rules/tests.js'
 import nestjsConfig from './rules/nestjs.js'
 
 const hasTypescript = hasPackage('typescript')
-const hasNestJs = hasPackage('@nestjs/core')
-
-const baseRecommended = [...tsLint.configs.recommended]
-const recommendedTypeChecked = [
-  ...tsLint.configs.recommendedTypeChecked,
-  ...tsLint.configs.strictTypeChecked,
-  ...tsLint.configs.stylisticTypeChecked,
-]
 
 const ignoreConfig = {
   ignores: ['coverage', 'dist', '**/dist/', 'node_modules', '**/node_modules'],
 }
 
-const eslintFlatConfig = tsLint.config(
+const eslintFlatConfig = [
   ignoreConfig,
   ...(hasTypescript ? [] : [jsLint.configs.recommended]),
   ...getFlat(typescriptConfig),
-  ...(hasTypescript ? (hasNestJs ? recommendedTypeChecked : baseRecommended) : []),
   ...getFlat(prettierConfig),
   ...getFlat(errorsConfig),
   ...getFlat(nodeConfig),
@@ -42,8 +32,8 @@ const eslintFlatConfig = tsLint.config(
   ...getFlat(variablesConfig),
   ...getFlat(bestPracticesConfig),
   ...getFlat(importsConfig),
-  ...getFlat(testsConfig)
-)
+  ...getFlat(testsConfig),
+]
 
 const nestjsEslintFlatConfig = nestjsConfig.flat
 

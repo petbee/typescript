@@ -5,11 +5,8 @@ const hasNestJs = hasPackage('@nestjs/core')
 
 const tsConfigOptions = [
   {
-    files: ['*.ts', '*.tsx'],
-    extends: [
-      'plugin:@typescript-eslint/eslint-recommended',
-      hasNestJs ? 'plugin:@typescript-eslint/recommended' : 'plugin:@typescript-eslint/recommended-type-checked',
-    ],
+    files: ['**/*.{ts,tsx}'],
+    extends: ['plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended'],
     plugins: ['@typescript-eslint'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -145,22 +142,24 @@ const tsConfigOptions = [
       // ! ts only rules
       // Enforce explicit accessibility modifiers on class properties and methods
       // https://typescript-eslint.io/rules/explicit-member-accessibility/
-      '@typescript-eslint/explicit-member-accessibility': [
-        'error',
-        {
-          accessibility: 'explicit',
-          overrides: {
-            accessors: 'explicit',
-            constructors: 'no-public',
-            methods: 'explicit',
-            parameterProperties: 'explicit',
-          },
-        },
-      ],
+      '@typescript-eslint/explicit-member-accessibility': hasNestJs
+        ? 'off'
+        : [
+            'error',
+            {
+              accessibility: 'explicit',
+              overrides: {
+                accessors: 'explicit',
+                constructors: 'no-public',
+                methods: 'explicit',
+                parameterProperties: 'explicit',
+              },
+            },
+          ],
 
       // Don't allow "any" at all
       // https://typescript-eslint.io/rules/no-explicit-any
-      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-explicit-any': hasNestJs ? 'warn' : 'error',
 
       // Enforce explicit function return type
       // https://typescript-eslint.io/rules/explicit-function-return-type/
@@ -271,7 +270,7 @@ const tsConfigOptions = [
     },
   },
   {
-    files: ['*.d.ts'],
+    files: ['**/*.d.ts', '**/*.d.tsx', '**/*.test.ts', '**/*.test.tsx'],
     rules: {
       'import/order': 'off',
       'import/no-duplicates': 'off',
