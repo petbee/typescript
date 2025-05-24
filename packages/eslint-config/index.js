@@ -3,6 +3,8 @@ module.exports = {
   parserOptions: {
     project: 'tsconfig.json',
     sourceType: 'module',
+    // ensure tsconfigRootDir is the project root for v8:
+    tsconfigRootDir: process.cwd(),
   },
   plugins: ['@typescript-eslint/eslint-plugin'],
   extends: [
@@ -14,8 +16,9 @@ module.exports = {
     './rules/variables.js',
     './rules/best-practices.js',
     './rules/imports.js',
-    './rules/typescript.js',
     './rules/tests.js',
+    './rules/typescript.js',
+    './rules/nestjs.js',
   ],
   root: true,
   env: {

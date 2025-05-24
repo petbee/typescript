@@ -1,11 +1,15 @@
 const { hasPackage } = require('../lib/utils')
 
 const hasTypescript = hasPackage('typescript')
+const hasNestJs = hasPackage('@nestjs/core')
 
-const tsConfig = [
+const tsConfigOptions = [
   {
     files: ['*.ts', '*.tsx'],
-    extends: ['plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended'],
+    extends: [
+      'plugin:@typescript-eslint/eslint-recommended',
+      hasNestJs ? 'plugin:@typescript-eslint/recommended' : 'plugin:@typescript-eslint/recommended-type-checked',
+    ],
     plugins: ['@typescript-eslint'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -19,6 +23,8 @@ const tsConfig = [
         // look in dirs like packages/package/*
         '*/*/tsconfig{.eslint.json,.json}',
       ],
+      projectService: true,
+      tsconfigRootDir: process.cwd(),
       projectFolderIgnoreList: [/node_modules/i],
       // We need this configuration to avoid performance issues in monorepos
       // https://github.com/typescript-eslint/typescript-eslint/issues/1192#issuecomment-862414778
@@ -27,9 +33,6 @@ const tsConfig = [
     rules: {
       //! extensions of native eslint rules
       //! when modifying a rule here, make sure to modify the native one and vice-versa
-
-      // Don't require a weird naming convention for interfaces
-      '@typescript-eslint/interface-name-prefix': 'off',
 
       // Disallow declaration of variables already declared in the outer scope
       // https://eslint.org/docs/rules/no-shadow
@@ -277,29 +280,31 @@ const tsConfig = [
   },
 ]
 
-module.exports = hasTypescript
-  ? {
-      overrides: tsConfig,
-    }
-  : {}
-
 // Flat config for ESLint v9 (no extends, plugins as object)
-module.exports.flat = hasTypescript
+const flatConfig = hasTypescript
   ? [
       {
-        files: tsConfig[0].files,
+        files: tsConfigOptions[0].files,
         languageOptions: {
           parser: require('@typescript-eslint/parser'),
-          parserOptions: tsConfig[0].parserOptions,
+          parserOptions: {
+            ...tsConfigOptions[0].parserOptions,
+            tsconfigRootDir: process.cwd(),
+          },
         },
         plugins: {
           '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
         },
-        rules: tsConfig[0].rules,
+        rules: tsConfigOptions[0].rules,
       },
       {
-        files: tsConfig[1].files,
-        rules: tsConfig[1].rules,
+        files: tsConfigOptions[1].files,
+        rules: tsConfigOptions[1].rules,
       },
     ]
   : []
+
+const config = hasTypescript ? { overrides: tsConfigOptions } : {}
+
+module.exports = config
+module.exports.flat = flatConfig

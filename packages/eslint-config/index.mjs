@@ -1,6 +1,9 @@
 import jsLint from '@eslint/js'
 import tsLint from 'typescript-eslint'
 
+// Utils
+import { hasPackage, getFlat } from './lib/utils.js'
+
 // Importing all the rules from the rules directory
 import prettierConfig from './rules/prettier.js'
 import errorsConfig from './rules/errors.js'
@@ -13,19 +16,25 @@ import typescriptConfig from './rules/typescript.js'
 import testsConfig from './rules/tests.js'
 import nestjsConfig from './rules/nestjs.js'
 
+const hasTypescript = hasPackage('typescript')
+const hasNestJs = hasPackage('@nestjs/core')
+
+const baseRecommended = [...tsLint.configs.recommended]
+const recommendedTypeChecked = [
+  ...tsLint.configs.recommendedTypeChecked,
+  ...tsLint.configs.strictTypeChecked,
+  ...tsLint.configs.stylisticTypeChecked,
+]
+
 const ignoreConfig = {
   ignores: ['coverage', 'dist', '**/dist/', 'node_modules', '**/node_modules'],
 }
 
-// Helper to get the flat config if available, otherwise fallback
-const getFlat = (config) => {
-  return config && config.flat ? (Array.isArray(config.flat) ? config.flat : [config.flat]) : []
-}
-
-export default [
+export default tsLint.config(
   ignoreConfig,
-  jsLint.configs.recommended,
-  ...tsLint.configs.recommended,
+  ...(hasTypescript ? [] : [jsLint.configs.recommended]),
+  ...getFlat(typescriptConfig),
+  ...(hasTypescript ? (hasNestJs ? recommendedTypeChecked : baseRecommended) : []),
   ...getFlat(prettierConfig),
   ...getFlat(errorsConfig),
   ...getFlat(nodeConfig),
@@ -33,7 +42,6 @@ export default [
   ...getFlat(variablesConfig),
   ...getFlat(bestPracticesConfig),
   ...getFlat(importsConfig),
-  ...getFlat(typescriptConfig),
   ...getFlat(testsConfig),
-  ...getFlat(nestjsConfig),
-]
+  ...getFlat(nestjsConfig)
+)
