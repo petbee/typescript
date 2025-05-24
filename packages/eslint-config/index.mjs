@@ -30,7 +30,7 @@ const ignoreConfig = {
   ignores: ['coverage', 'dist', '**/dist/', 'node_modules', '**/node_modules'],
 }
 
-export default tsLint.config(
+const eslintFlatConfig = tsLint.config(
   ignoreConfig,
   ...(hasTypescript ? [] : [jsLint.configs.recommended]),
   ...getFlat(typescriptConfig),
@@ -42,6 +42,11 @@ export default tsLint.config(
   ...getFlat(variablesConfig),
   ...getFlat(bestPracticesConfig),
   ...getFlat(importsConfig),
-  ...getFlat(testsConfig),
-  ...getFlat(nestjsConfig)
+  ...getFlat(testsConfig)
 )
+
+const nestjsEslintFlatConfig = nestjsConfig.flat
+
+export { nestjsEslintFlatConfig, eslintFlatConfig }
+
+export default eslintFlatConfig

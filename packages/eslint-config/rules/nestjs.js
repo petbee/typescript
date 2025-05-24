@@ -46,12 +46,4 @@ const nestFlat = hasNestJs
     ]
   : []
 
-module.exports = hasNestJs
-  ? {
-      extends: ['plugin:@darraghor/nestjs-typed/recommended'],
-      plugins: [nestjsLint.classicPlugin],
-      rules: nestjsRules,
-    }
-  : {}
-
 module.exports.flat = nestFlat

@@ -18,7 +18,6 @@ module.exports = {
     './rules/imports.js',
     './rules/tests.js',
     './rules/typescript.js',
-    './rules/nestjs.js',
   ],
   root: true,
   env: {
