@@ -1,15 +1,22 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "experimentalDecorators": true,
-    "lib": ["es2020"],
-    "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
   }
 }

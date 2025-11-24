@@ -2,6 +2,15 @@
 
 Main repository for Petbee Typescript standards. Issues should be used to start discussions about standards and patterns. PRs are welcome after being rightfully discussed.
 
+## Latest Updates (v3.0.0)
+
+- ✅ **TypeScript 5.9.3** - Latest stable TypeScript version
+- ✅ **ESLint 9.39** - Modern flat config support
+- ✅ **Lerna 9** - Updated to latest version
+- ✅ **Modern TS Configs** - Using ES2022 targets, modern module resolution (`bundler`, `NodeNext`)
+- ✅ **React 17+ JSX** - New JSX transform (`react-jsx`)
+- ✅ **Strict Type Safety** - Added `noUncheckedIndexedAccess`, `verbatimModuleSyntax`
+
 ## Content
 
 ##### `docs/`
@@ -40,7 +49,9 @@ Feel free to use more than one label in an issue, but try keeping them semantic 
 
 ### Working with the packages
 
-This project uses `lerna` with `yarn` workspaces, so it's highly recommended to read at least the [Lerna documentation](https://github.com/lerna/lerna).
+This project uses **Lerna 9** with `yarn` workspaces. For more information, see the [Lerna documentation](https://lerna.js.org/).
+
+**Note:** Lerna 9 has better performance and improved workspace handling. All commands are executed via `npx lerna` or `yarn lerna`.
 
 #### Bootstrap the repository
 
@@ -55,21 +66,23 @@ yarn
 To run a `package.json` script on all packages, you can use:
 
 ```bash
-lerna run {scriptName}
+npx lerna run {scriptName}
+# or
+yarn lerna run {scriptName}
 # will run the scriptName script on all package directories
 ```
 
-If you want to only run on some packages, pass a `--scope=package-name` to the command above. For more instructions, see the [`lerna run` documentation](https://github.com/lerna/lerna/tree/master/commands/run#readme).
+If you want to only run on some packages, pass a `--scope=package-name` to the command above. For more instructions, see the [`lerna run` documentation](https://lerna.js.org/docs/features/run-tasks).
 
 ```bash
-lerna run --scope="eslint-*" test
+npx lerna run test --scope="eslint-*"
 # run the test script on all packages that match the pattern above
 ```
 
 The same can be done for regular shell programs with the `lerna exec` command:
 
 ```bash
-lerna exec "pwd"
+npx lerna exec "pwd"
 # will print the pwd of all package directories
 ```
 
@@ -86,7 +99,7 @@ chan fixed "Fix that nasty potato bug"
 It's also possible to run the command on multiple packages with the `lerna exec` command:
 
 ```bash
-lerna exec "chan fixed 'Fix that nasty potato bug'"
+npx lerna exec "chan fixed 'Fix that nasty potato bug'"
 # note the quotes
 ```
 
@@ -94,5 +107,12 @@ Every package has a `version` script that will automatically update their change
 
 Relevant commands:
 
-- [`lerna version`](https://github.com/lerna/lerna/blob/master/commands/version/README.md) - Only update versions without publishing the packages.
-- [`lerna publish`](https://github.com/lerna/lerna/blob/master/commands/publish/README.md) - Update the version and publish the packages.
+- [`lerna version`](https://lerna.js.org/docs/features/version-and-publish) - Only update versions without publishing the packages.
+- [`lerna publish`](https://lerna.js.org/docs/features/version-and-publish) - Update the version and publish the packages.
+
+You can also use the convenience scripts in `package.json`:
+
+```bash
+yarn release        # Bump patch version and publish
+yarn release:major  # Bump major version and publish
+```

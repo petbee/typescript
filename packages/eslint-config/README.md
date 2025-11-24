@@ -2,6 +2,16 @@
 
 This package provides Petbee's ESLint configuration as an extensible shared config, supporting both ESLint v9.x (flat config) and older versions (.eslintrc).
 
+## Features (v3.0.0)
+
+- ✅ **ESLint 9.39+** - Latest ESLint with flat config
+- ✅ **TypeScript 5.9+** - Modern TypeScript support
+- ✅ **typescript-eslint 8.47+** - Latest type-aware linting
+- ✅ **Auto NestJS detection** - Automatically configures for NestJS projects
+- ✅ **Jest 29 support** - Updated test linting rules
+- ✅ **Cypress 5 support** - Modern E2E test linting
+- ✅ **Prettier integration** - Conflicts automatically resolved
+
 ## Installation
 
 Give that you already have ESLint installed, run:
@@ -17,7 +27,7 @@ yarn add -D @petbee/eslint-config typescript prettier
 ```jsonc
 // .eslintrc
 {
-  "extends": ["@petbee/eslint-config"]
+  "extends": ["@petbee/eslint-config"],
 }
 ```
 
@@ -52,7 +62,7 @@ And maintain a .eslintrc file:
 ```jsonc
 // .eslintrc
 {
-  "extends": ["@petbee/eslint-config"]
+  "extends": ["@petbee/eslint-config"],
 }
 ```
 
@@ -67,7 +77,7 @@ The preset will automatically load Typescript rules when dealing with `.ts` or `
 {
   "extends": "./tsconfig.json",
   "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
-  "exclude": []
+  "exclude": [],
 }
 ```
 
@@ -78,12 +88,11 @@ And you should be good to go.
 The preset will automatically load NestJS rules when your projects has `@nestjs/core` installed. However, if you are using NestJS with Typescript, you need to make sure that the `tsconfig.json` file is present at the root of your project. If you are using a custom `tsconfig.json`, you can create a separate `tsconfig.eslint.json` file as follows:
 
 ```jsonc
-
 // tsconfig.eslint.json
 {
   "extends": "./tsconfig.json",
   "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
-  "exclude": []
+  "exclude": [],
 }
 ```
 
@@ -103,8 +112,8 @@ yarn add -D babel-eslint
   "extends": "@petbee/eslint-config",
   "parser": "babel-eslint",
   "parserOptions": {
-    "sourceType": "module"
-  }
+    "sourceType": "module",
+  },
 }
 ```
 
@@ -119,10 +128,10 @@ If a project uses both Typescript and Javascript, you can configure the parser i
       "files": ["*.js", "*.jsx"],
       "parser": "babel-eslint",
       "parserOptions": {
-        "sourceType": "module"
-      }
-    }
-  ]
+        "sourceType": "module",
+      },
+    },
+  ],
 }
 ```
 

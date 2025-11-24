@@ -1,19 +1,19 @@
 import jsLint from '@eslint/js'
 
 // Utils
-import { hasPackage, getFlat } from './lib/utils.js'
+import { getFlat, hasPackage } from './lib/utils.js'
 
 // Importing all the rules from the rules directory
-import prettierConfig from './rules/prettier.js'
-import errorsConfig from './rules/errors.js'
-import nodeConfig from './rules/node.js'
-import styleConfig from './rules/style.js'
-import variablesConfig from './rules/variables.js'
 import bestPracticesConfig from './rules/best-practices.js'
+import errorsConfig from './rules/errors.js'
 import importsConfig from './rules/imports.js'
-import typescriptConfig from './rules/typescript.js'
-import testsConfig from './rules/tests.js'
 import nestjsConfig from './rules/nestjs.js'
+import nodeConfig from './rules/node.js'
+import prettierConfig from './rules/prettier.js'
+import styleConfig from './rules/style.js'
+import testsConfig from './rules/tests.js'
+import typescriptConfig from './rules/typescript.js'
+import variablesConfig from './rules/variables.js'
 
 const hasTypescript = hasPackage('typescript')
 
@@ -37,6 +37,6 @@ const eslintFlatConfig = [
 
 const nestjsEslintFlatConfig = nestjsConfig.flat
 
-export { nestjsEslintFlatConfig, eslintFlatConfig }
+export { eslintFlatConfig, nestjsEslintFlatConfig }
 
 export default eslintFlatConfig

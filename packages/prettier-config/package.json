@@ -27,11 +27,11 @@
   },
   "prettier": "./prettier.config.js",
   "dependencies": {
-    "prettier-plugin-organize-imports": "4.1.0"
+    "prettier-plugin-organize-imports": "4.3.0"
   },
   "devDependencies": {
-    "prettier": "3.5.3",
-    "typescript": "5.8.3"
+    "prettier": "3.6.2",
+    "typescript": "5.9.3"
   },
   "peerDependencies": {
     "prettier": ">=3.0.0",

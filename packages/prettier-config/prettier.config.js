@@ -38,4 +38,10 @@ module.exports = {
 
   // Include parentheses around a sole arrow function parameter.
   arrowParens: 'always',
+
+  // Enforce consistent line endings across all platforms.
+  endOfLine: 'lf',
+
+  // Plugins to enable additional functionality.
+  plugins: ['prettier-plugin-organize-imports'],
 }

@@ -12,12 +12,14 @@
   "scripts": {
     "release": "lerna version patch && lerna publish from-git --yes",
     "release:major": "lerna version major && lerna publish from-git --yes",
+    "release:minor": "lerna version minor && lerna publish from-git --yes",
     "build": "lerna run build",
     "clean": "lerna clean && lerna run clean",
     "format:check": "prettier --list-different \"./**/*.{ts,js,json}\"",
     "format": "prettier --write \"**/*.{ts,js,json}\"",
     "lint": "eslint --ext .js,.ts,.jsx,.tsx .",
-    "test": "lerna run test --concurrency 1"
+    "test": "lerna run test --concurrency 1",
+    "version:check": "lerna changed"
   },
   "prettier": "@petbee/prettier-config",
   "lint-staged": {
@@ -33,11 +35,11 @@
     "@petbee/eslint-config": "./packages/eslint-config",
     "@petbee/prettier-config": "./packages/prettier-config",
     "@petbee/tsconfig": "^2.0.0",
-    "eslint": "^9.27.0",
+    "eslint": "^9.39.1",
     "husky": "^9.1.7",
-    "lerna": "^7.4.2",
-    "lint-staged": "^16.0.0",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.3"
+    "lerna": "^9.0.1",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3"
   }
 }

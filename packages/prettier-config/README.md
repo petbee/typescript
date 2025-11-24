@@ -2,6 +2,15 @@
 
 This package provides Petbee's `.prettierrc` shared config.
 
+## Features (v3.0.0)
+
+- ✅ **Prettier 3.6+** - Latest Prettier version
+- ✅ **Auto-organize imports** - Using `prettier-plugin-organize-imports`
+- ✅ **Consistent line endings** - LF line endings across all platforms
+- ✅ **120 character line width** - Optimal for modern displays
+- ✅ **Single quotes** - Consistent quote style
+- ✅ **No semicolons** - Cleaner code appearance
+
 ## Installation
 
 Give that you already have `prettier` installed, run:
