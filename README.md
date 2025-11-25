@@ -11,11 +11,18 @@ Main repository for Petbee Typescript standards. Issues should be used to start 
 - ✅ **React 17+ JSX** - New JSX transform (`react-jsx`)
 - ✅ **Strict Type Safety** - Added `noUncheckedIndexedAccess`, `verbatimModuleSyntax`
 
+> **🚀 Upgrading from v2.x?** Check out:
+>
+> - [AI Migration Prompts](/docs/AI%20Migration%20Prompts.md) - 🤖 Copy-paste prompts for AI assistants
+> - [Migration Guide v3](/docs/Migration%20Guide%20v3.md) - Complete migration instructions
+
 ## Content
 
 ##### `docs/`
 
 - [Getting Started](/docs/Getting%20Started.md) - Getting starting guide to configure and automate our tooling process
+- [Migration Guide v3](/docs/Migration%20Guide%20v3.md) - Comprehensive guide for upgrading from v2.x to v3.0.0
+- [AI Migration Prompts](/docs/AI%20Migration%20Prompts.md) - 🤖 Copy-paste prompts for AI assistants to help migrate your projects
 
 ##### `packages/`
 
