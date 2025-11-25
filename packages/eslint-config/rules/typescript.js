@@ -12,15 +12,8 @@ const tsConfigOptions = [
     parserOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
-      project: [
-        // look in the root
-        'tsconfig{.eslint.json,.json}',
-        // look in dirs like node/react
-        '*/tsconfig{.eslint.json,.json}',
-        // look in dirs like packages/package/*
-        '*/*/tsconfig{.eslint.json,.json}',
-      ],
       projectService: true,
+      defaultProject: 'tsconfig.json',
       tsconfigRootDir: process.cwd(),
       projectFolderIgnoreList: [/node_modules/i],
       // We need this configuration to avoid performance issues in monorepos

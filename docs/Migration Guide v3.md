@@ -425,6 +425,32 @@ export type { MyType }
 // Check plugin changelogs for breaking changes
 ```
 
+### Issue 6: ESLint not finding files
+
+**Problem:** ESLint can't find certain files like `.d.ts` files or reports parsing errors.
+
+**Solution:** Ensure all files you want to lint are included in your `tsconfig.json`:
+
+```json
+{
+  "include": ["src/**/*", "**/*.d.ts"]
+}
+```
+
+The glob pattern `src/**/*` already includes `.d.ts` files in that directory. If you have type definitions or other files outside your main source directory, explicitly include them.
+
+For complex setups, create a `tsconfig.eslint.json`:
+
+```json
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*", "**/*.d.ts", "*.js", "*.mjs"],
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+ESLint will automatically discover and use this file.
+
 ## Gradual Migration Strategy
 
 If full migration is too disruptive, consider this gradual approach:
