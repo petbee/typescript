@@ -865,7 +865,7 @@
     "@octokit/openapi-types" "^24.2.0"
 
 "@petbee/eslint-config@./packages/eslint-config":
-  version "2.0.15"
+  version "3.0.2"
   dependencies:
     "@darraghor/eslint-plugin-nestjs-typed" "^6.9.12"
     "@typescript-eslint/eslint-plugin" "^8.47.0"
@@ -881,9 +881,12 @@
     typescript-eslint "^8.47.0"
 
 "@petbee/prettier-config@./packages/prettier-config":
-  version "2.0.0"
+  version "3.0.0"
   dependencies:
     prettier-plugin-organize-imports "4.3.0"
+
+"@petbee/tsconfig@./packages/tsconfig":
+  version "3.0.1"
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"

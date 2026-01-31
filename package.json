@@ -19,7 +19,10 @@
     "format": "prettier --write \"**/*.{ts,js,json}\"",
     "lint": "eslint --ext .js,.ts,.jsx,.tsx .",
     "test": "lerna run test --concurrency 1",
-    "version:check": "lerna changed"
+    "version:check": "lerna changed",
+    "test:lint": "eslint --no-ignore test/lint-examples/**/*.{ts,tsx}",
+    "test:tsconfig": "tsc --noEmit --project test/tsconfig-examples/tsconfig.json",
+    "test:prettier": "prettier --check test/prettier-examples/**/*.{js,tsx}"
   },
   "prettier": "@petbee/prettier-config",
   "lint-staged": {
@@ -29,12 +32,13 @@
     ],
     "*.json": [
       "prettier --write"
-    ]
+    ],
+    "!test/**/*": []
   },
   "devDependencies": {
     "@petbee/eslint-config": "./packages/eslint-config",
     "@petbee/prettier-config": "./packages/prettier-config",
-    "@petbee/tsconfig": "^2.0.0",
+    "@petbee/tsconfig": "./packages/tsconfig",
     "eslint": "^9.39.1",
     "husky": "^9.1.7",
     "lerna": "^9.0.1",

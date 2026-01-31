@@ -19,7 +19,6 @@ const tsConfigOptions = [
       ecmaVersion: 2022,
       sourceType: 'module',
       projectService: true,
-      defaultProject: 'tsconfig.json',
       tsconfigRootDir: process.cwd(),
       projectFolderIgnoreList: [/node_modules/i],
       // We need this configuration to avoid performance issues in monorepos

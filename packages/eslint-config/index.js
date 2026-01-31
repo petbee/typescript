@@ -1,7 +1,6 @@
 // This is the legacy config for ESLint < 9.0
 module.exports = {
   parserOptions: {
-    project: 'tsconfig.json',
     sourceType: 'module',
     // ensure tsconfigRootDir is the project root for v8:
     tsconfigRootDir: process.cwd(),

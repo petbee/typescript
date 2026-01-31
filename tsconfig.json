@@ -1,3 +1,4 @@
 {
-  "extends": "@petbee/tsconfig/base.json"
+  "extends": "@petbee/tsconfig/base.json",
+  "exclude": ["test"]
 }
