@@ -1,0 +1,9 @@
+{
+  "extends": "./base.json",
+  "exclude": ["node_modules", "dist", "test", "**/*spec.ts", "dangerfile.ts", "prisma"],
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "incremental": false,
+    "composite": false
+  }
+}

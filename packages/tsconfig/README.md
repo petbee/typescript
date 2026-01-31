@@ -19,32 +19,35 @@ yarn add -D @petbee/tsconfig typescript
 
 ## Module Resolution Guide
 
-This package provides different configs optimized for different project types:
 
-- **`base.json`** - For bundled web apps (Vite, Webpack) - Uses `"moduleResolution": "bundler"`
-- **`node/base.json`** - For Node.js ESM projects - Uses `"moduleResolution": "NodeNext"`
-- **`nestjs.json`** - For NestJS projects - Uses `"moduleResolution": "node"` (CommonJS)
-- **`react/*`** - For React projects - Uses modern JSX transform
+This package provides entry-point configs for each framework, making it easy to extend the right config for your project:
+
+- **`base.json`** – Safe, strict defaults for all projects (modern web, library, etc.)
+- **`react.json`** – For React projects (extends `react/dom.json`)
+- **`node.json`** – For Node.js ESM projects (extends `node/base.json`)
+- **`nestjs.json`** – For NestJS projects (extends `nestjs/base.json`)
+- **`nextjs.json`** – For Next.js projects (extends `nextjs/base.json`)
+- **`node/commonjs.json`** – For legacy Node.js CommonJS projects
+
+You can also extend the more granular configs in each framework folder if you need a specific variant (e.g., `react/library.json`, `node/library.json`).
 
 ## Usage
 
 ### React Project
 
-#### React Application Project
 
-To start, create a `tsconfig.json` in the root of your project.
+#### React Project
 
-A typical setup where the application sit in `[project root]/app` folder is as follow:
+To start, create a `tsconfig.json` in the root of your project:
 
 ```json
 {
-  "extends": "@petbee/tsconfig/react/application.json",
+  "extends": "@petbee/tsconfig/react.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDir": ".",
-    "paths": { "*": ["*", "app/*"] }
+    "rootDir": "."
   },
-  "include": ["./app/**/*", "./client/**/*", "./server/**/*", "./tests/**/*"]
+  "include": ["./src/**/*"]
 }
 ```
 
@@ -106,15 +109,14 @@ A typical setup where the application sit in `[project root]/src` folder is as f
 
 **Note:** The Node.js config uses modern ESM module resolution (`"moduleResolution": "NodeNext"`). This is optimal for Node.js 18+ with native ESM support. If you're using CommonJS, consider using the NestJS config instead.
 
-#### Node Application Project
 
-To start, create a `tsconfig.json` in the root of your project.
+#### Node.js Project (ESM)
 
-A typical setup where the application sit in `[project root]/src` folder is as follow:
+To start, create a `tsconfig.json` in the root of your project:
 
 ```json
 {
-  "extends": "@petbee/tsconfig/node/base.json",
+  "extends": "@petbee/tsconfig/node.json",
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist"
@@ -130,29 +132,25 @@ A typical setup where the application sit in `[project root]/src` folder is as f
 }
 ```
 
-#### Node Library Project
 
-Similarly for a node library project. Create a `tsconfig.json` in the root of your project with a setup below assuming the library code sit in `[project root]/src` folder.
+#### Node.js Project (CommonJS)
+
+For legacy Node.js projects using CommonJS, extend the CommonJS config:
 
 ```json
 {
-  "extends": "@petbee/tsconfig/node/library.json",
+  "extends": "@petbee/tsconfig/node/commonjs.json",
   "compilerOptions": {
-    "baseUrl": "./src",
-    "rootDir": "."
-  },
-  "include": ["./src/**/*"]
+    "baseUrl": "./",
+    "outDir": "./dist"
+  }
 }
 ```
 
-### All Other Project
 
-A base configuration file is also provided if the above does not fit your need.
+### Custom/Advanced Usage
 
-**Note:** The base config uses `"moduleResolution": "bundler"`, which is optimal for projects using modern bundlers (Vite, Webpack 5+, esbuild, etc.). If you need different module resolution:
-
-- For Node.js ESM: use `node/base.json`
-- For CommonJS: use `nestjs.json` or override with `"moduleResolution": "node"`
+If you need more control, you can extend any of the granular configs in the framework folders (e.g., `react/library.json`, `node/library.json`, etc.) or the base config directly:
 
 ```json
 {
@@ -163,6 +161,23 @@ A base configuration file is also provided if the above does not fit your need.
   }
 }
 ```
+
+### TypeScript Configuration Notes
+
+#### Plugins
+
+- If you override the `plugins` array in your project’s tsconfig.json, **always include** the Next.js plugin for Next.js projects:
+  ```json
+  "plugins": [
+    { "name": "next" }
+  ]
+  ```
+- Omitting the Next.js plugin may cause type-checking and IDE features to break.
+
+#### Include/Exclude
+
+- If you set your own `include` or `exclude` arrays, they will completely replace those from the base config.
+- Use the recommended patterns from the base config unless you have a specific need.
 
 ## Common Got Ya
 
