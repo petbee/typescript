@@ -1,5 +1,5 @@
 {
-  "extends": "../../base.json",
+  "extends": "../base.json",
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["ES2023"],
