@@ -1,11 +1,8 @@
-const { hasPackage, getFlat } = require('../lib/utils')
+const { hasPackage } = require('../lib/utils')
 const nestjsLint = require('@darraghor/eslint-plugin-nestjs-typed')
-const tsConfig = require('./typescript.js') // <-- our patched TS config
+const { tsParserOptions } = require('./shared-config.js')
 
 const hasNestJs = hasPackage('@nestjs/core')
-
-// Grab TS-ESLint flat override
-const tsFlat = getFlat(tsConfig)
 
 const nestjsRules = {
   '@typescript-eslint/interface-name-prefix': 'off',
@@ -25,19 +22,19 @@ const nestjsRules = {
 }
 
 // If NestJS is present, take its flatRecommended array and
-// graft in parserOptions from tsFlat[0]:
+// graft in parserOptions from shared config:
 const nestFlat = hasNestJs
   ? [
       ...nestjsLint.default.configs.flatRecommended.map((cfg) => ({
         ...cfg,
         languageOptions: {
-          ...tsFlat[0].languageOptions,
-          ...cfg.languageOptions,
-          // merge parserOptions so `project` stays intact
+          parser: require('@typescript-eslint/parser'),
           parserOptions: {
-            ...tsFlat[0].languageOptions.parserOptions,
+            ...tsParserOptions,
+            // merge with any NestJS-specific parserOptions
             ...cfg.languageOptions?.parserOptions,
           },
+          ...cfg.languageOptions,
         },
       })),
       {

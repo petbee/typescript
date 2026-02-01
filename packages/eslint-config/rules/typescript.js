@@ -1,5 +1,6 @@
 const { hasPackage } = require('../lib/utils')
-const hasTypescript = hasPackage('typescript')
+const { hasTypescript, tsParserOptions, tsCommonRules } = require('./shared-config.js')
+
 const hasNestJs = hasPackage('@nestjs/core')
 const hasReact = hasPackage('react')
 const hasNext = hasPackage('next') || hasPackage('nextjs')
@@ -7,7 +8,9 @@ const hasNext = hasPackage('next') || hasPackage('nextjs')
 // Load framework-specific rules
 const reactRules = hasReact ? require('./react.js').rules : {}
 const nextjsRules = hasNext ? require('./nextjs.js').rules : {}
-const nestjsRules = hasNestJs ? require('./nestjs.js').rules : {}
+// Note: Don't require nestjs.js here to avoid circular dependency.
+// NestJS handles its own flat config completely.
+const nestjsRules = {}
 
 const tsConfigOptions = [
   {
@@ -15,30 +18,9 @@ const tsConfigOptions = [
     extends: ['plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended'],
     plugins: ['@typescript-eslint'],
     parser: '@typescript-eslint/parser',
-    parserOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'module',
-      projectService: true,
-      tsconfigRootDir: process.cwd(),
-      projectFolderIgnoreList: [/node_modules/i],
-      // We need this configuration to avoid performance issues in monorepos
-      // https://github.com/typescript-eslint/typescript-eslint/issues/1192#issuecomment-862414778
-      allowAutomaticSingleRunInference: true,
-    },
+    parserOptions: tsParserOptions,
     rules: {
-      // General improvements
-      'no-useless-catch': 'warn',
-      'no-magic-numbers': ['warn', { ignore: [0, 1], ignoreArrayIndexes: true }],
-      'max-classes-per-file': ['warn', 1],
-      'prefer-arrow-callback': ['warn', { allowNamedFunctions: false, allowUnboundThis: true }],
-      'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
-      'import/no-relative-parent-imports': 'warn',
-      'no-restricted-imports': [
-        'error',
-        {
-          patterns: ['../../*'],
-        },
-      ],
+      ...tsCommonRules,
       ...reactRules,
       ...nextjsRules,
       ...nestjsRules,
@@ -62,7 +44,7 @@ const flatConfig = hasTypescript
         languageOptions: {
           parser: require('@typescript-eslint/parser'),
           parserOptions: {
-            ...tsConfigOptions[0].parserOptions,
+            ...tsParserOptions,
             tsconfigRootDir: process.cwd(),
           },
         },
