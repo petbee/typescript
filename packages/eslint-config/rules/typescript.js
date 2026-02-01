@@ -2,15 +2,15 @@ const { hasPackage } = require('../lib/utils')
 const { hasTypescript, tsParserOptions, tsCommonRules } = require('./shared-config.js')
 
 const hasNestJs = hasPackage('@nestjs/core')
-const hasReact = hasPackage('react')
 const hasNext = hasPackage('next') || hasPackage('nextjs')
 
 // Load framework-specific rules
-const reactRules = hasReact ? require('./react.js').rules : {}
 const nextjsRules = hasNext ? require('./nextjs.js').rules : {}
 // Note: Don't require nestjs.js here to avoid circular dependency.
 // NestJS handles its own flat config completely.
+// React rules are now handled separately in index.mjs
 const nestjsRules = {}
+const reactRules = {}
 
 const tsConfigOptions = [
   {

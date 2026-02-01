@@ -10,12 +10,14 @@ import importsConfig from './rules/imports.js'
 import nestjsConfig from './rules/nestjs.js'
 import nodeConfig from './rules/node.js'
 import prettierConfig from './rules/prettier.js'
+import reactConfig from './rules/react.js'
 import styleConfig from './rules/style.js'
 import testsConfig from './rules/tests.js'
 import typescriptConfig from './rules/typescript.js'
 import variablesConfig from './rules/variables.js'
 
 const hasTypescript = hasPackage('typescript')
+const hasReact = hasPackage('react')
 
 const ignoreConfig = {
   ignores: ['coverage', 'dist', '**/dist/', 'node_modules', '**/node_modules'],
@@ -33,6 +35,7 @@ const eslintFlatConfig = [
   ...getFlat(bestPracticesConfig),
   ...getFlat(importsConfig),
   ...getFlat(testsConfig),
+  ...(hasReact ? getFlat(reactConfig) : []),
 ]
 
 const nestjsEslintFlatConfig = nestjsConfig.flat
