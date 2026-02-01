@@ -865,7 +865,7 @@
     "@octokit/openapi-types" "^24.2.0"
 
 "@petbee/eslint-config@./packages/eslint-config":
-  version "3.0.2"
+  version "3.0.6"
   dependencies:
     "@darraghor/eslint-plugin-nestjs-typed" "^6.9.12"
     "@typescript-eslint/eslint-plugin" "^8.47.0"
@@ -878,6 +878,7 @@
     eslint-plugin-n "^17.23.1"
     eslint-plugin-prettier "^5.5.4"
     eslint-plugin-react "7.37.5"
+    eslint-plugin-react-hooks "^4.6.2"
     typescript-eslint "^8.47.0"
 
 "@petbee/prettier-config@./packages/prettier-config":
@@ -886,7 +887,7 @@
     prettier-plugin-organize-imports "4.3.0"
 
 "@petbee/tsconfig@./packages/tsconfig":
-  version "3.0.1"
+  version "3.0.3"
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
@@ -2395,6 +2396,11 @@ eslint-plugin-prettier@^5.5.4:
   dependencies:
     prettier-linter-helpers "^1.0.0"
     synckit "^0.11.7"
+
+eslint-plugin-react-hooks@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.6.2.tgz#c829eb06c0e6f484b3fbb85a97e57784f328c596"
+  integrity sha512-QzliNJq4GinDBcD8gPB5v0wh6g8q3SUi6EFF0x8N/BL9PoVs0atuGc47ozMRyOWAKdwaZ5OnbOEa3WR+dSGKuQ==
 
 eslint-plugin-react@7.37.5:
   version "7.37.5"

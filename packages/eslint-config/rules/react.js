@@ -22,12 +22,18 @@ const reactRules = {
   'react-hooks/exhaustive-deps': 'warn',
 }
 
-// Legacy config for ESLint < 9
-module.exports = {
-  plugins: ['react'],
-  extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended'],
-  rules: reactRules,
+// Legacy config for ESLint < 9 - only created if React is available
+let legacyConfig = {}
+
+if (hasReact) {
+  legacyConfig = {
+    plugins: ['react'],
+    extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended'],
+    rules: reactRules,
+  }
 }
+
+module.exports = legacyConfig
 
 // Flat config for ESLint v9+ - only created if React is available
 let flatConfig = []
