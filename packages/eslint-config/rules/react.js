@@ -2,6 +2,8 @@ module.exports = {
   plugins: ['react'],
   extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended'],
   rules: {
+    // Allow non-camelCase naming in React projects (e.g., components, hooks, CSS modules)
+    '@typescript-eslint/naming-convention': 'off',
     // Enforce consistent usage of function component definition
     // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/function-component-definition.md
     'react/function-component-definition': [
