@@ -1,5 +1,6 @@
-const reactPlugin = require('eslint-plugin-react')
-const reactHooksPlugin = require('eslint-plugin-react-hooks')
+const { hasPackage } = require('../lib/utils')
+
+const hasReact = hasPackage('react')
 
 const reactRules = {
   // Allow non-camelCase naming in React projects (e.g., components, hooks, CSS modules)
@@ -28,25 +29,35 @@ module.exports = {
   rules: reactRules,
 }
 
-// Flat config for ESLint v9+
-module.exports.flat = [
-  {
-    files: ['**/*.{jsx,tsx}'],
-    plugins: {
-      react: reactPlugin,
-      'react-hooks': reactHooksPlugin,
-    },
-    languageOptions: {
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
+// Flat config for ESLint v9+ - only created if React is available
+let flatConfig = []
+
+if (hasReact) {
+  // If React is available, require React plugins. If they're missing, this will fail (expected behavior)
+  const reactPlugin = require('eslint-plugin-react')
+  const reactHooksPlugin = require('eslint-plugin-react-hooks')
+
+  flatConfig = [
+    {
+      files: ['**/*.{jsx,tsx}'],
+      plugins: {
+        react: reactPlugin,
+        'react-hooks': reactHooksPlugin,
+      },
+      languageOptions: {
+        parserOptions: {
+          ecmaFeatures: {
+            jsx: true,
+          },
         },
       },
+      rules: {
+        ...reactPlugin.configs.recommended.rules,
+        ...reactHooksPlugin.configs.recommended.rules,
+        ...reactRules,
+      },
     },
-    rules: {
-      ...reactPlugin.configs.recommended.rules,
-      ...reactHooksPlugin.configs.recommended.rules,
-      ...reactRules,
-    },
-  },
-]
+  ]
+}
+
+module.exports.flat = flatConfig
