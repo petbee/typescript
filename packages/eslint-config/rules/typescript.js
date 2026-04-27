@@ -1,5 +1,13 @@
 const { hasPackage } = require('../lib/utils')
-const { hasTypescript, tsParserOptions, tsCommonRules } = require('./shared-config.js')
+const {
+  hasTypescript,
+  serializerFilePatterns,
+  testFilePatterns,
+  tsParserOptions,
+  tsCommonRules,
+  tsSerializerOverrideRules,
+  tsTestOverrideRules,
+} = require('./shared-config.js')
 
 const hasNestJs = hasPackage('@nestjs/core')
 const hasNext = hasPackage('next') || hasPackage('nextjs')
@@ -12,35 +20,46 @@ const nextjsRules = hasNext ? require('./nextjs.js').rules : {}
 const nestjsRules = {}
 const reactRules = {}
 
-const tsConfigOptions = [
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: ['plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended'],
-    plugins: ['@typescript-eslint'],
-    parser: '@typescript-eslint/parser',
-    parserOptions: tsParserOptions,
-    rules: {
-      ...tsCommonRules,
-      ...reactRules,
-      ...nextjsRules,
-      ...nestjsRules,
-    },
+const tsBaseConfig = {
+  files: ['**/*.{ts,tsx}'],
+  extends: ['plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended'],
+  plugins: ['@typescript-eslint'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: tsParserOptions,
+  rules: {
+    ...tsCommonRules,
+    ...reactRules,
+    ...nextjsRules,
+    ...nestjsRules,
   },
-  {
-    files: ['**/*.d.ts', '**/*.d.tsx', '**/*.test.ts', '**/*.test.tsx'],
-    rules: {
-      'import/order': 'off',
-      'import/no-duplicates': 'off',
-      'import/export': 'off',
-    },
+}
+
+const tsTestOverrideConfig = {
+  files: testFilePatterns,
+  rules: tsTestOverrideRules,
+}
+
+const tsSerializerOverrideConfig = {
+  files: serializerFilePatterns,
+  rules: tsSerializerOverrideRules,
+}
+
+const tsImportRelaxedConfig = {
+  files: ['**/*.d.ts', '**/*.d.tsx', '**/*.test.ts', '**/*.test.tsx'],
+  rules: {
+    'import/order': 'off',
+    'import/no-duplicates': 'off',
+    'import/export': 'off',
   },
-]
+}
+
+const tsConfigOptions = [tsBaseConfig, tsTestOverrideConfig, tsSerializerOverrideConfig, tsImportRelaxedConfig]
 
 // Flat config for ESLint v9 (no extends, plugins as object)
 const flatConfig = hasTypescript
   ? [
       {
-        files: tsConfigOptions[0].files,
+        files: tsBaseConfig.files,
         languageOptions: {
           parser: require('@typescript-eslint/parser'),
           parserOptions: {
@@ -51,11 +70,19 @@ const flatConfig = hasTypescript
         plugins: {
           '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
         },
-        rules: tsConfigOptions[0].rules,
+        rules: tsBaseConfig.rules,
       },
       {
-        files: tsConfigOptions[1].files,
-        rules: tsConfigOptions[1].rules,
+        files: tsTestOverrideConfig.files,
+        rules: tsTestOverrideConfig.rules,
+      },
+      {
+        files: tsSerializerOverrideConfig.files,
+        rules: tsSerializerOverrideConfig.rules,
+      },
+      {
+        files: tsImportRelaxedConfig.files,
+        rules: tsImportRelaxedConfig.rules,
       },
     ]
   : []
