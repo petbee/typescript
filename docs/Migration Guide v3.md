@@ -2,6 +2,8 @@
 
 This guide will help you migrate your projects from v2.x to v3.0.0 of the Petbee TypeScript configuration packages.
 
+> Looking for the latest migration path? See [Migration Guide v4](/docs/Migration%20Guide%20v4.md) for v3.x -> v4.0.0.
+
 ## 🤖 AI Assistant Prompt (Copy & Paste This!)
 
 Use this prompt when asking AI assistants (ChatGPT, Claude, GitHub Copilot, etc.) to help migrate your project:

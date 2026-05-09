@@ -2,22 +2,27 @@
 
 Main repository for Petbee Typescript standards. Issues should be used to start discussions about standards and patterns. PRs are welcome after being rightfully discussed.
 
-## Latest Updates (v3.0.0)
+## Latest Updates (v4.0.0)
 
-- ✅ **TypeScript 5.9.3** - Latest stable TypeScript version
-- ✅ **ESLint 9.39** - Modern flat config support
+- ✅ **TypeScript 6.0+ ready** - Updated toolchain and compatibility
+- ✅ **ESLint 10 support** - Works with ESLint 9 and 10
+- ✅ **Prettier 3.8+** - Latest formatting baseline
 - ✅ **Lerna 9** - Updated to latest version
 - ✅ **Modern TS Configs** - Using ES2022 targets, modern module resolution (`bundler`, `NodeNext`)
 - ✅ **React 17+ JSX** - New JSX transform (`react-jsx`)
 - ✅ **Strict Type Safety** - Added `noUncheckedIndexedAccess`, `verbatimModuleSyntax`
+- ✅ **Major package release** - `@petbee/eslint-config`, `@petbee/prettier-config`, and `@petbee/tsconfig` now on `4.x`
 
-> **🚀 Upgrading from v2.x?** See the [Migration Guide v3](/docs/Migration%20Guide%20v3.md) - includes AI prompts and detailed instructions.
+> **🚀 Upgrading from v3.x?** See the [Migration Guide v4](/docs/Migration%20Guide%20v4.md).
+> 
+> **Need older migration steps?** See the [Migration Guide v3](/docs/Migration%20Guide%20v3.md) for v2 -> v3 upgrades.
 
 ## Content
 
 ##### `docs/`
 
 - [Getting Started](/docs/Getting%20Started.md) - Getting starting guide to configure and automate our tooling process
+- [Migration Guide v4](/docs/Migration%20Guide%20v4.md) - Complete guide for upgrading from v3.x to v4.0.0
 - [Migration Guide v3](/docs/Migration%20Guide%20v3.md) - Complete guide for upgrading from v2.x to v3.0.0 (includes AI prompts)
 
 ##### `packages/`

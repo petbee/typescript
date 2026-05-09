@@ -2,9 +2,9 @@
 
 This package provides Petbee's `.prettierrc` shared config.
 
-## Features (v3.0.0)
+## Features (v4.0.0)
 
-- ✅ **Prettier 3.6+** - Latest Prettier version
+- ✅ **Prettier 3.8+** - Latest Prettier baseline used in this repo
 - ✅ **Auto-organize imports** - Using `prettier-plugin-organize-imports`
 - ✅ **Consistent line endings** - LF line endings across all platforms
 - ✅ **120 character line width** - Optimal for modern displays

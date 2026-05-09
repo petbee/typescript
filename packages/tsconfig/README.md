@@ -2,9 +2,9 @@
 
 This is the default `tsconfig.json` that should be used by all Petbee projects.
 
-## Features (v3.0.0)
+## Features (v4.0.0)
 
-- ✅ **TypeScript 5.9+** - Modern TypeScript support
+- ✅ **TypeScript 6.0+ tested** - Updated tooling while preserving broad peer compatibility
 - ✅ **ES2022+ Target** - Modern JavaScript features
 - ✅ **Modern Module Resolution** - `bundler` for web apps, `NodeNext` for Node.js
 - ✅ **Strict Type Safety** - Including `noUncheckedIndexedAccess` for safer array access
@@ -18,7 +18,6 @@ yarn add -D @petbee/tsconfig typescript
 ```
 
 ## Module Resolution Guide
-
 
 This package provides entry-point configs for each framework, making it easy to extend the right config for your project:
 
@@ -34,7 +33,6 @@ You can also extend the more granular configs in each framework folder if you ne
 ## Usage
 
 ### React Project
-
 
 #### React Project
 
@@ -109,7 +107,6 @@ A typical setup where the application sit in `[project root]/src` folder is as f
 
 **Note:** The Node.js config uses modern ESM module resolution (`"moduleResolution": "NodeNext"`). This is optimal for Node.js 18+ with native ESM support. If you're using CommonJS, consider using the NestJS config instead.
 
-
 #### Node.js Project (ESM)
 
 To start, create a `tsconfig.json` in the root of your project:
@@ -132,7 +129,6 @@ To start, create a `tsconfig.json` in the root of your project:
 }
 ```
 
-
 #### Node.js Project (CommonJS)
 
 For legacy Node.js projects using CommonJS, extend the CommonJS config:
@@ -146,7 +142,6 @@ For legacy Node.js projects using CommonJS, extend the CommonJS config:
   }
 }
 ```
-
 
 ### Custom/Advanced Usage
 

@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-05-09
+
 ### Changed
 
 - Relax `no-magic-numbers` for test files and common trivial values such as `-1`, `0`, `1`, `2`, `10`, `24`, `60`, `100`, and `1000`.

@@ -18,7 +18,7 @@
 Petbee `Javascript`/`Typescript` style guide consists of some separate packages:
 
 - [`@petbee/prettier-config`](/packages/prettier-config) - Petbee's unified `prettier` configuration. Responsible for automatically formatting all javascript code.
-- [`@petbee/eslint-config`](/packages/eslint-config-petbee) - Petbee's base `eslint` configuration. Responsible for static analyzing every `Javascript` code and guaranteeing a baseline of code quality and good practices.
+- [`@petbee/eslint-config`](/packages/eslint-config) - Petbee's base `eslint` configuration. Responsible for static analyzing every `Javascript` code and guaranteeing a baseline of code quality and good practices.
 - [`@petbee/tsconfig`](/packages/tsconfig) - Petbee's unified `tsconfig.json` preset for every `Typescript` project.
 
 Every project which uses `Javascript` or `Typescript` must have at least `eslint-config` and `@petbee/prettier-config` installed. Please check their _README_ for any specific package questions.

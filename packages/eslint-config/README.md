@@ -1,15 +1,16 @@
 # `@petbee/eslint-config`
 
-This package provides Petbee's ESLint configuration as an extensible shared config, supporting both ESLint v9.x (flat config) and older versions (.eslintrc).
+This package provides Petbee's ESLint configuration as an extensible shared config, supporting ESLint v9/v10 flat config and legacy `.eslintrc` usage.
 
-## Features (v3.0.0)
+## Features (v4.0.0)
 
-- ✅ **ESLint 9.39+** - Latest ESLint with flat config
-- ✅ **TypeScript 5.9+** - Modern TypeScript support
-- ✅ **typescript-eslint 8.47+** - Latest type-aware linting
+- ✅ **ESLint 9 and 10 support** - Compatible peer range `^9.39.1 || ^10.0.0`
+- ✅ **TypeScript 4/5/6 support** - Broad compatibility for incremental upgrades
+- ✅ **typescript-eslint 8.59+** - Current type-aware linting stack
 - ✅ **Auto NestJS detection** - Automatically configures for NestJS projects
 - ✅ **Jest 29 support** - Updated test linting rules
-- ✅ **Cypress 5 support** - Modern E2E test linting
+- ✅ **Cypress 6 support** - Modern E2E test linting
+- ✅ **Next.js plugin bundled** - `@next/eslint-plugin-next` ships with this package
 - ✅ **Prettier integration** - Conflicts automatically resolved
 
 ## Installation
@@ -31,7 +32,7 @@ yarn add -D @petbee/eslint-config typescript prettier
 }
 ```
 
-### For ESLint v9.x (flat config)
+### For ESLint v9/v10 (flat config)
 
 ```js
 // eslint.config.js
