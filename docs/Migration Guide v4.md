@@ -9,18 +9,19 @@ Version 4.0.0 aligns the shared tooling with latest major ecosystem updates whil
 - `@petbee/eslint-config@4.0.0`
 - `@petbee/prettier-config@4.0.0`
 - `@petbee/tsconfig@4.0.0`
-- ESLint 10 support (while keeping ESLint 9 compatibility in peer range)
+- ESLint 9.39 as the recommended baseline, with ESLint 10 available where plugin compatibility is confirmed
 - TypeScript 6 toolchain updates (while keeping TypeScript 4/5/6 compatibility)
 
 ## What Changed
 
 ### 1) ESLint compatibility and dependencies
 
-- Added explicit `@eslint/js` dependency to support ESLint 10 flat config resolution.
+- Added explicit `@eslint/js` dependency so ESLint 10 flat config resolution works when the surrounding plugin stack supports it.
 - `@petbee/eslint-config` now supports peer range:
   - `eslint: ^9.39.1 || ^10.0.0`
 - Next.js plugin support is bundled in the config package:
   - `@next/eslint-plugin-next` is included and registered.
+- React-based apps should still validate `eslint-plugin-react` compatibility before moving from ESLint 9.39 to 10.
 
 ### 2) Toolchain refresh
 
@@ -47,11 +48,19 @@ yarn add -D @petbee/tsconfig@^4.0.0
 
 ### Step 2: Update peer tooling in your project
 
+Recommended baseline:
+
+```bash
+yarn add -D eslint@^9.39.1 typescript@^6.0.0 prettier@^3.8.0
+```
+
+Optional ESLint 10 path for repositories that have verified their plugin stack:
+
 ```bash
 yarn add -D eslint@^10.0.0 typescript@^6.0.0 prettier@^3.8.0
 ```
 
-If you are not ready for ESLint 10 yet, you can stay on ESLint 9.39+ temporarily because `@petbee/eslint-config@4` still supports it.
+If your project depends on `eslint-plugin-react` directly or indirectly, prefer staying on ESLint 9.39 until upstream stable ESLint 10 support is released.
 
 ### Step 3: Keep or migrate your ESLint config style
 
@@ -60,9 +69,7 @@ Flat config (`eslint.config.js`) remains the recommended approach:
 ```js
 import petbeeConfig from '@petbee/eslint-config'
 
-export default [
-  ...petbeeConfig,
-]
+export default [...petbeeConfig]
 ```
 
 Legacy `.eslintrc` remains available for compatibility:
@@ -86,9 +93,9 @@ yarn --cwd packages/eslint-config eslint-check
 
 ## Common Notes
 
-### ESLint 10 peer warnings from third-party plugins
+### ESLint 10 peer warnings and runtime issues from third-party plugins
 
-Some external ESLint plugins may still declare peer ranges ending at ESLint 9, even if they work in practice with ESLint 10. This is expected during ecosystem transition.
+Some external ESLint plugins still declare peer ranges ending at ESLint 9, and some React-oriented stacks may fail at runtime under ESLint 10. Treat ESLint 10 as opt-in until your app-level plugin chain is validated. In practice, any project that still relies on `eslint-plugin-react` should remain on ESLint 9.39 for now.
 
 ### TypeScript 6 peer warnings
 
@@ -98,6 +105,7 @@ Some tooling packages still declare peer support up to TypeScript 5.x. Prefer te
 
 - [ ] Updated all `@petbee/*` config packages to `^4.0.0`
 - [ ] Updated project tooling (`eslint`, `typescript`, `prettier`)
+- [ ] Confirmed whether the repo should stay on ESLint 9.39 or opt into ESLint 10
 - [ ] Lint and typecheck commands pass in CI
 - [ ] Team docs and templates reference v4 versions
 

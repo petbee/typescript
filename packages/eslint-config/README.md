@@ -1,10 +1,11 @@
 # `@petbee/eslint-config`
 
-This package provides Petbee's ESLint configuration as an extensible shared config, supporting ESLint v9/v10 flat config and legacy `.eslintrc` usage.
+This package provides Petbee's ESLint configuration as an extensible shared config, with ESLint 9.39 as the recommended baseline, conditional ESLint 10 compatibility, and legacy `.eslintrc` usage.
 
 ## Features (v4.0.0)
 
-- ✅ **ESLint 9 and 10 support** - Compatible peer range `^9.39.1 || ^10.0.0`
+- ✅ **ESLint 9.39 baseline** - Recommended default for broad plugin compatibility
+- ✅ **Conditional ESLint 10 compatibility** - Peer range allows `^10.0.0`, but downstream plugins may still block some apps
 - ✅ **TypeScript 4/5/6 support** - Broad compatibility for incremental upgrades
 - ✅ **typescript-eslint 8.59+** - Current type-aware linting stack
 - ✅ **Auto NestJS detection** - Automatically configures for NestJS projects
@@ -33,6 +34,8 @@ yarn add -D @petbee/eslint-config typescript prettier
 ```
 
 ### For ESLint v9/v10 (flat config)
+
+ESLint 9.39 is the safest default today. ESLint 10 can work, but projects that still depend on `eslint-plugin-react` should stay on ESLint 9.39 until upstream stable support lands.
 
 ```js
 // eslint.config.js

@@ -5,7 +5,8 @@ Main repository for Petbee Typescript standards. Issues should be used to start 
 ## Latest Updates (v4.0.0)
 
 - ✅ **TypeScript 6.0+ ready** - Updated toolchain and compatibility
-- ✅ **ESLint 10 support** - Works with ESLint 9 and 10
+- ✅ **ESLint 9.39 baseline** - Recommended default while ecosystem plugins catch up
+- ✅ **ESLint 10 compatibility path** - Available where downstream plugin stacks are confirmed compatible
 - ✅ **Prettier 3.8+** - Latest formatting baseline
 - ✅ **Lerna 9** - Updated to latest version
 - ✅ **Modern TS Configs** - Using ES2022 targets, modern module resolution (`bundler`, `NodeNext`)
