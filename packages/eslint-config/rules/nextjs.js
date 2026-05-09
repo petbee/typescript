@@ -24,6 +24,7 @@ if (hasNextJs) {
 }
 
 module.exports = legacyConfig
+module.exports.rules = hasNextJs ? nextjsRules : {}
 
 // Flat config for ESLint v9+ - only created if Next.js is available
 let flatConfig = []

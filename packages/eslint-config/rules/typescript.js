@@ -11,19 +11,21 @@ const {
 
 const hasNestJs = hasPackage('@nestjs/core')
 const hasNext = hasPackage('next') || hasPackage('nextjs')
+const shouldApplyNextRules = hasNext
 
 // Load framework-specific rules
-const nextjsRules = hasNext ? require('./nextjs.js').rules : {}
+const nextjsRules = shouldApplyNextRules ? require('./nextjs.js').rules : {}
 // Note: Don't require nestjs.js here to avoid circular dependency.
 // NestJS handles its own flat config completely.
 // React rules are now handled separately in index.mjs
 const nestjsRules = {}
 const reactRules = {}
+const basePlugins = ['@typescript-eslint', ...(shouldApplyNextRules ? ['@next/next'] : [])]
 
 const tsBaseConfig = {
   files: ['**/*.{ts,tsx}'],
   extends: ['plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended'],
-  plugins: ['@typescript-eslint'],
+  plugins: basePlugins,
   parser: '@typescript-eslint/parser',
   parserOptions: tsParserOptions,
   rules: {
@@ -55,6 +57,11 @@ const tsImportRelaxedConfig = {
 
 const tsConfigOptions = [tsBaseConfig, tsTestOverrideConfig, tsSerializerOverrideConfig, tsImportRelaxedConfig]
 
+const flatBasePlugins = {
+  '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+  ...(shouldApplyNextRules ? { '@next/next': require('@next/eslint-plugin-next') } : {}),
+}
+
 // Flat config for ESLint v9 (no extends, plugins as object)
 const flatConfig = hasTypescript
   ? [
@@ -68,7 +75,7 @@ const flatConfig = hasTypescript
           },
         },
         plugins: {
-          '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+          ...flatBasePlugins,
         },
         rules: tsBaseConfig.rules,
       },
