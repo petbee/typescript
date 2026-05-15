@@ -1,3 +1,14 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [4.0.1](https://github.com/petbee/typescript/compare/@petbee/eslint-config@4.0.0...@petbee/eslint-config@4.0.1) (2026-05-15)
+
+### Bug Fixes
+
+- **eslint-config:** swap eslint-plugin-import for eslint-plugin-import-x ([2716492](https://github.com/petbee/typescript/commit/2716492903e717e2d19ba5917035ffdc66a097f3))
+
 # Changelog
 
 All notable changes to this package will be documented in this file.

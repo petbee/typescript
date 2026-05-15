@@ -47,10 +47,16 @@ module.exports = {
   },
 }
 
-// Flat config for ESLint v9 (no extends, plugins as object)
+// Flat config for ESLint v9/v10. We alias `eslint-plugin-import-x` (the
+// actively maintained, ESLint 10 compatible fork) under the `import` plugin
+// name so existing `import/...` rule names keep working as drop-in.
+// Note: like the legacy `plugin:import/typescript` extends, TypeScript path
+// resolution depends on a resolver being installed (e.g. eslint-import-resolver-typescript)
+// in the consumer project; rules like `import/no-self-import` and the
+// `internal` group of `import/order` will fall back to default resolution otherwise.
 module.exports.flat = {
   plugins: {
-    import: require('eslint-plugin-import'),
+    import: require('eslint-plugin-import-x'),
   },
   rules: module.exports.rules,
 }
